@@ -1,0 +1,44 @@
+﻿@model ML.Banco
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Bancos</h1>
+<br />
+ @Html.ActionLink("Agregar Banco", "Form", "Banco", htmlAttributes: new { @class = "btn btn-success" })
+@if(Model.Bancos != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Editar</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">NoEmpleados</th>
+                <th scope="col">NoSucursales</th>
+                <th scope="col">Capital</th>
+                <th scope="col">NoClientes</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+          <tbody>
+        @foreach (ML.Banco banco in Model.Bancos)
+        {
+          
+    <tr>
+      <th scope="row"><button type="submit" class="btn btn-warning">Editar</button> </th>
+      <td>@banco.Nombre</td>
+      <td>@banco.NoEmpleados</td>
+      <td>@banco.NoSucursales</td>
+      <td>@banco.Capital</td>
+      <td>@banco.NoClientes</td>
+      <th scope="row"><a class="btn btn-danger" href="@Url.Action("form", "banco", new { IdBanco = banco.IdBanco})"> Eliminar </a>  <hr></th>
+      
+    </tr>
+   
+        }
+     </tbody>  
+</table>
+}
+
+
